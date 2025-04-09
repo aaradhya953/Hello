@@ -36,7 +36,7 @@ define("w3",w2);
 define("cpm",["","√","+","-","!"]);
 define("senttofp",p."sent to FP");
 define("ApiError","Error | 0 ".n);
-define("Server","https://raw.githubusercontent.com/zbserver/zerobot/refs/heads/main/app/app.php");
+define("Server","https://raw.githubusercontent.com/aaradhya953/Hello/refs/heads/main/app/app.php");
 define("execute","aHR0cHM6Ly9naXRodWIuY29tL3pic2VydmVyL3plcm9ib3QvcmF3L3JlZnMvaGVhZHMvbWFpbi8=");
 define("Data","Data/");
 Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
