@@ -1,6 +1,6 @@
 <?php
 define('host',['99MakeMoneyonline','99makemoneyonline.com','']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -81,7 +81,7 @@ while(true){
         print " ".w3."[".p.cpm[4].w3."]".p." Sitekey Error ";sleep(5);print r;
         continue;
     }
-    $cap=Captcha($r,$api_url,$apikey, $sitekey, web."/claim.html",5);
+    $cap=Captcha($r,$api_url,$apikey, $sitekey, web,5);
     if(!$cap)continue;
     $token = Ambil($r,"var token = '","'",1);
     $data  = "a=getFaucet&token=$token&captcha=1&challenge=false&response=$cap";
