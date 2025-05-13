@@ -1,6 +1,6 @@
 <?php
 define('host',['ClaimLite','claimlite.club','']);
-define('version','1.0.3');
+define('version','1.0.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -19,26 +19,27 @@ Function balance(){
     $bal  = Ambil($r,'<div class="text-primary"><b>','</b>',1);
     return ["b"=>$bal,"c"=>$coin,"l"=>$log];
 }
-Function suc($reward,$nub){
+Function success($reward,$nub){
     $r=balance(); $b =$r["b"]; $c=$r["c"];
-    print p."   Number  ".h."[".p.$nub.k." / ".p.$reward.h."]".n;
-    print p."   Balance ".h."[".p.$b.k." / ".p.$c.h."]".n;
-    print lineX();
+    print " ".w3."[".p.cpm[1].w3."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward.n;
+    print " ".w3."[".p.cpm[2].w3."]".p." Balance     ".panah.p.$b.k." / ".p.$c.n;
+
 }
 Awal:
 SaveCokUa();
 ban();
 $r = get(web);
 if(preg_match("/logout/",$r)){
-    print p."   Login Success";sleep(2);print rr;
+    print p." Login Success".r;sleep(2);
 }else{
     print " ".w3."[".p.cpm[4].w3."]".k." Cookie Experied! ".n;sleep(2);Del();die;
 }
 $r=null;
 $r = balance(); $b=$r["b"]; $c=$r["c"]; $l=$r["l"];
-print p."   Login   : ".$l.n;
-print p."   Balance : ".$b.k." / ".p.$c.n;
-print lineX();
+
+print " ".w3."[".p.cpm[1].w3."]".p." Login   ".panah.p.$l.n.
+      " ".w3."[".p.cpm[1].w3."]".p." Balance ".panah.p.$b.k." / ".p.$c.n.
+      " ".p.line();
 Faucet:
 while(true){
     $r = get(web);
@@ -75,7 +76,7 @@ while(true){
     $r = json_decode(post(web.'/system/ajax.php',$data),1);
     
     if($r['status'] == 200){
-        suc($r["reward"], $r["number"]);    
+        success($r["reward"], $r["number"]);    
     }else{
         echo " ".k.strip_tags($r['message']).r;
     }          
