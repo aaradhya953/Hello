@@ -23,7 +23,7 @@ Function success($reward,$nub){
     $r=balance(); $b =$r["b"]; $c=$r["c"];
     print " ".w3."[".p.cpm[1].w3."]".p." Lucky Number".panah.p.$nub.k." / ".p.$reward.n;
     print " ".w3."[".p.cpm[2].w3."]".p." Balance     ".panah.p.$b.k." / ".p.$c.n;
-
+    print lineX();
 }
 Awal:
 SaveCokUa();
@@ -50,6 +50,18 @@ while(true){
         if(strpos($time,"hour") !== false){
             $cektime=explode(' hour',$time)[0];
             tim(($cektime) * (3600+1800));goto Faucet;}
+        if(strpos($time,"minute") !== false){
+            $cektime=explode(' minutes',$time)[0];
+            tim(($cektime +1) * 60);goto Faucet;
+        }else{
+        $cektime=explode(' seconds',$time)[0];
+        tim($cektime);
+        }
+    }
+    /*if($time){
+        if(strpos($time,"hour") !== false){
+            $cektime=explode(' hour',$time)[0];
+            tim(($cektime) * (3600+1800));goto Faucet;}
         if(strpos($time,"minutes") !== false){
             $cektime=explode(' minutes',$time)[0];
             tim(($cektime +1) * 60);goto Faucet;
@@ -58,7 +70,7 @@ while(true){
         tim($cektime);
         }
     }
-    
+    */
     $token = Ambil($r,"var token = '","';",1);
     $data  = "a=getFaucet&token=$token&challenge=false&response=false";
     $r = json_decode(post(web.'/system/ajax.php',$data),1);
