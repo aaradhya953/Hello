@@ -4,7 +4,7 @@ define('version','1.0.3');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-Del_Cok();
+init();
 Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "x-requested-with: XMLHttpRequest";
