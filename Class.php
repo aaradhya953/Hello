@@ -1,6 +1,6 @@
 <?php
 
-const class_version = "1.1.7";
+const class_version = "1.1.8";
 
 // Warna teks
 const n = "\n";          // Baris baru
