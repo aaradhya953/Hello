@@ -410,6 +410,96 @@ class FreeCaptcha {
 		$data['ic-hp'] = '';
 		return $data;
 	}
+	static function iconBypassd($token, $icon_header, $theme = "dark", $sub = "captcha-request"){
+		
+		$retry = 0;
+		
+		$icon_header[] = "origin: ".host;
+		$icon_header[] = "referer: ".host;
+		$icon_header[] = "x-iconcaptcha-token: ".$token;
+		$icon_header[] = "x-requested-with: XMLHttpRequest";
+		
+		bypass_icon:
+		if($retry == 10)return;
+		$timestamp = round(microtime(true) * 1000);
+		$initTimestamp = $timestamp - 1000;
+		$widgetID = self::widgetId();
+		
+		$data = ["payload" => 
+			base64_encode(json_encode([
+				"widgetId"	=> $widgetID,
+				"action" 	=> "LOAD",
+				"theme" 	=> $theme,
+				"token" 	=> $token,
+				"timestamp"	=> $timestamp,
+				"initTimestamp"	=> $initTimestamp
+			]))
+		];
+		sleep(2);
+		print "\r                        \r";
+		print "---[1] Bypass....";
+		$r = json_decode(base64_decode(Requests::post(host.$sub,$icon_header, $data)[1]),1);
+		$retry++;
+		if(isset($r["challenge"])){
+			$base64Image = $r["challenge"];
+			$challengeId = $r["identifier"];
+		}else{
+			sleep(2);
+			print "\r                        \r";
+			print "---[x] load img failed";
+			sleep(2);
+			print "\r                        \r";
+			goto bypass_icon;
+		}
+		$captcha = [20, 60, 100, 140, 180, 220, 260, 300];
+		foreach($captcha as $x){
+			$timestamp = round(microtime(true) * 1000);
+			$initTimestamp = $timestamp - 1000;
+			$data = ["payload" => 
+				base64_encode(json_encode([
+					"widgetId"		=> $widgetID,
+					"challengeId"	=> $challengeId,
+					"action"		=> "SELECTION",
+					"x"				=> $x,
+					"y"				=> 24,
+					"width"			=> 320,
+					"token" 		=> $token,
+					"timestamp"		=> $timestamp,
+					"initTimestamp"	=> $initTimestamp
+				]))
+			];
+			sleep(2);
+			print "\r                        \r";
+			print "---[2] Bypass..";
+			$r = json_decode(base64_decode(Requests::post(host.$sub,$icon_header, $data)[1]),1);
+			
+			if (($r['completed'] ?? false) === false) {
+				sleep(2);
+				print "\r                        \r";
+				print "---[3] Bypass failed";
+				sleep(2);
+				print "\r                        \r";
+				continue;
+			}elseif(isset($r['completed'])){
+				break;
+			}else{
+				goto bypass_icon;
+			}
+		}
+		sleep(2);
+		print "\r                        \r";
+		print "---[3] Bypass success";
+		sleep(2);
+		print "\r                        \r";
+		$data = [];
+		$data['captcha'] = "icaptcha";
+		$data['_iconcaptcha-token']=$token;
+		$data['ic-rq']=1;
+		$data['ic-wid'] = $widgetID;
+		$data['ic-cid'] = $challengeId;
+		$data['ic-hp'] = '';
+		return $data;
+	}
 }
 class Cloudflare {
 	function __construct(){
