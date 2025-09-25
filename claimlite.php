@@ -72,7 +72,7 @@ while(true){
     }
     */
     $token = Ambil($r,"var token = '","';",1);
-    $data  = "a=getFaucet&token=$token&challenge=false&response=false";
+    $data  = "a=getFaucet&token=$token&captcha=2&challenge=false&response=false";
     $r = json_decode(post(web.'/system/ajax.php',$data),1);
     
     if($r['status'] == 200){
