@@ -1,0 +1,384 @@
+! Title: 💰 CryptoBlock - Faucets Blocker Me
+! Description: Blocks cryptocurrency faucets, mining sites, and crypto scam platforms
+! Homepage: https://github.com/Suurp/uBlock-CustomFilters
+! License: https://github.com/Suurp/uBlock-CustomFilters/blob/main/LICENSE
+! Version: %timestamp%
+! Last modified: %timestamp%
+! Expires: 3 days
+!
+! GitHub issues: https://github.com/Suurp/uBlock-CustomFilters/issues
+! GitHub pull requests: https://github.com/Suurp/uBlock-CustomFilters/pulls
+
+!BITCOTASK
+! https://github.com/uBlockOrigin/uAssets/discussions/27472#discussioncomment-12618435
+@@||bitcotasks.com/captcha2/*
+bitcotasks.com#@#+js(nostif, alert)
+bitcotasks.com#@#+js(nostif, offsetWidth)
+bitcotasks.com#@#+js(no-fetch-if, bmcdn6)
+bitcotasks.com##+js(no-fetch-if, bmcdn6, length:11000, '{"type": "opaque"}')
+bitcotasks.com##+js(nostif, window.location.replace, 1200)
+bitcotasks.com##+js(rpnt, script, /window\.open\(['"]([^'"]+)['"]\);/gm, true, condition, myWindow)
+bitcotasks.com##+js(rpnt, script, timer > 2 && window_focus === true, false)
+bitcotasks.com##+js(rpnt, script, myWindow.closed == true || window_focus, false, condition, myWindow)
+bitcotasks.com##+js(set, window_focus, true)
+bitcotasks.com##+js(set, window_paused, false)
+bitcotasks.com###BitcoAdContainer, #blog, .main-content:has([data-url])
+bitcotasks.com##+js(nano-stb, showadbar, 5000)
+bitcotasks.com##+js(nano-stb, show_captcha, 1000)
+bitcotasks.com##+js(nano-sib, timerInterval, 1000, 0.20)
+bitcotasks.com##+js(nano-stb, a.link, 1000, 0.20)
+||bitcotasks.com/popad*$redirect=popads.js
+
+!VIEFAUCET
+viefaucet.com##.el-col:not(:has(> .claim-faucet, .wait-container)):has(> .ads > iframe)
+viefaucet.com##.el-row:has(.wait-container):style(justify-content: center)
+viefaucet.com##.offerwall-widget, .coinsgame, div:has(> #bm-720)
+viefaucet.com##+js(nosiif, this.timerRef, 2000)
+
+!FEYORRA
+!https://github.com/Suurp/FiltersUBO/issues/4
+$popup,domain=feyorra.site
+feyorra.site##[style*="overflow:hidden"]:not(:has(#loginBtnText)), .ads, ins
+feyorra.site##+js(rpnt, script, s.ok && s.opened, true)
+feyorra.site##+js(noeval-if, /chp_?ad/)
+feyorra.site##+js(nowoif, ptcwin, *, obj)
+feyorra.site##+js(trusted-set, document.visibilityState, '{"value": "hidden"}')
+feyorra.site##+js(aeld, focus)
+@@||cdn.jsdelivr.net/npm/@fingerprintjs
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=feyorra.site
+
+!EARN-TRUMP
+!https://github.com/Suurp/FiltersUBO/issues/4
+earn-trump.com##[style*="overflow:hidden"]:not(:has(#loginBtnText)), #loginForm > .text-center:has(iframe)
+earn-trump.com##.text-center.row:has(#ClaimForm):style(display: flex !important; justify-content: center)
+earn-trump.com##+js(noeval-if, /chp_?ad/)
+earn-trump.com##+js(set, document.hasFocus, trueFunc)
+earn-trump.com##+js(set, window.closed, false)
+earn-trump.com##+js(set, window.focus, falseFunc)
+earn-trump.com##+js(rpnt, script, !e.isTrusted, false)
+earn-trump.com##+js(nowoif, , obj)
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=earn-trump.com
+
+!EARN-BONK
+!https://github.com/Suurp/FiltersUBO/issues/4
+earn-bonk.com##+js(noeval-if, /chp_?ad/)
+earn-bonk.com##+js(acs, document.createElement, /cdn.bmcdn6.com|ins/)
+earn-bonk.com##[style*="overflow:hidden"]:not(:has(#loginBtnText)), #loginForm > .text-center:has(iframe), .text-center:has(> ins), .glass:has(ins, iframe)
+earn-bonk.com##+js(set, document.hidden, true)
+earn-bonk.com##+js(nowoif, , obj)
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=earn-bonk.com
+
+!HOOTREWARDS
+!https://github.com/Suurp/FiltersUBO/issues/7
+hootrewards.com##.overflow-hidden, .row > .text-center:has([src*="banner_ads.js"])
+hootrewards.com##+js(aeld, click, window.open, elements, '#claimSubmitBtn, #claimBtn')
+hootrewards.com###claimModal:style(display: block !important)
+hootrewards.com##+js(trusted-set-attr, #claimModal, class, 'show fade modal')
+||hootrewards.com/antiAdBlocker$script,redirect=noopjs
+||surfvisits.com$domain=hootrewards.com
+||bitadspace.com$domain=hootrewards.com
+
+!AOYCO.IN
+aoyco.in##+js(nowoif, !/ptc/view/, *, obj)
+aoyco.in##+js(nano-stb, captchaData, 1000)
+aoyco.in##+js(no-fetch-if, /bmcdn6.com|outbrain.js|adligature.com|quant.js|srvtrck.com/, , '{"type": "opaque"}')
+aoyco.in###aoyco\.in-cpx, [x-data="featuredSlider()"], div:has(> ins), .ad-container, div.justify-center:has([src*="aoyco.in/ad/"])
+||aoyco.in/js/ad-server.js$script,1p
+$3p,frame,denyallow=cloudflare.com|bitcotasks.com|offerwall.me,redirect=noopframe,domain=aoyco.in
+
+!STARLAVINIA
+starlavinia.com##+js(aopr, window.outerWidth)
+starlavinia.com##[class*="col-span"]:has(#openClaimModal):style(grid-column: span 12 / span 12 !important)
+starlavinia.com##+js(aeld, /contextmenu|keydown|visibilitychange|resize|focus|blur/)
+starlavinia.com##+js(aopr, detectedAdblock)
+starlavinia.com##+js(nowoif, , obj)
+starlavinia.com##+js(set, window.closed, false)
+starlavinia.com##+js(set, window.focus, falseFunc)
+starlavinia.com##+js(no-fetch-if, bmcdn6, , '{"type": "opaque"}')
+||starlavinia.com/dist/js/global.js$script,1p
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=starlavinia.com
+
+!CRYPTOFUTURE.CO.IN
+!https://github.com/Suurp/FiltersUBO/issues/13
+cryptofuture.co.in##.ads, div:has(#banner-container), .page-wrapper, ins
+cryptofuture.co.in##.row:has(#fauform), .text-center.row:has([href*="/links/"]):style(display: flex; justify-content: center)
+cryptofuture.co.in##+js(rpnt, script, /: 1000|: 500|: 3000/gm, : 0)
+cryptofuture.co.in##+js(rpnt, script, displayInitialMessage: true, displayInitialMessage: false)
+||cryptofuture.co.in/assets/js/adblock-detector.js$script,redirect=noopjs
+
+!ONLYFAUCET
+onlyfaucet.com#@#+js(rmnt, script, /fetch|adb/i)
+onlyfaucet.com##.ads, div:has(#banner-container), ins
+onlyfaucet.com##.row:has(#fauform), .row:has(.custom-claim-box):style(justify-content: center; flex-wrap: nowrap !important; flex-direction: column-reverse; align-items: center)
+onlyfaucet.com##.row:has([action*="https://onlyfaucet.com/challenge/claim"]):style(justify-content: center;)
+onlyfaucet.com##+js(rmnt, script, /loadScript|adContainer/i)
+onlyfaucet.com##+js(nostif, ad, 1000)
+onlyfaucet.com##+js(rpnt, script, img.complete && img.naturalWidth !== 0, true)
+onlyfaucet.com##+js(rpnt, script, let currentNonce = null;, let currentNonce = null; loadCaptcha();)
+onlyfaucet.com##+js(rpnt, script, feedback.classList.remove("error");, feedback.classList.remove("error"); const claimButton = document.getElementById("subbutt"); claimButton.click())
+onlyfaucet.com##+js(no-xhr-if, adsbygoogle.js)
+
+!BANFAUCET
+banfaucet.com##[id*="wcfloatDiv"], ins, .show.modal-backdrop, iframe[src*="ads/show.php"]
+banfaucet.com##+js(nano-sib, .claim-button, 1000, 0.002)
+banfaucet.com##+js(set, document.hasFocus, trueFunc)
+banfaucet.com##+js(rpnt, script, var url, var bypass)
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=banfaucet.com
+
+!CLAIMTRX
+claimtrx.com##+js(noeval-if, /chp_?ad/)
+claimtrx.com##[id*="wcfloatDiv"], ins
+claimtrx.com##.row:has([action*="/faucet/verify"]):style(justify-content: center;)
+claimtrx.com##+js(set, document.hasFocus, trueFunc)
+claimtrx.com##+js(rpnt, script, let url, let bypass)
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=claimtrx.com
+
+!SATOSHIFAUCET
+satoshifaucet.io##+js(noeval-if, /chp_?ad/)
+satoshifaucet.io##.ads, div:has(#banner-container), ins
+satoshifaucet.io##+js(aeld, DOMContentLoaded, modal)
+satoshifaucet.io##.row:has([action*="/faucet/verify"]), .row:has(#minute):style(justify-content: center;)
+satoshifaucet.io##+js(trusted-create-html, div, <img src='/n5dev.png' onerror='(function() { "use strict"; let clickedCaptcha = false; let clickedSubmit = false; let skipForever = false; const shouldSkip = () => { if (skipForever) return true; const swalTitle = document.querySelector(".swal2-title"); if (swalTitle && /failed/i.test(swalTitle.textContent)) { skipForever = true; return true; } const swalContent = document.querySelector(".swal2-content"); if (swalContent && swalContent.textContent.trim() === "Shortlink must be completed to continue again") { skipForever = true; return true; } return false; }; const checkCaptcha = () => { if (shouldSkip()) return; if (clickedCaptcha) return; const promptElement = document.querySelector(".captcha-prompt"); if (!promptElement) return; const prompCaptcha = promptElement.textContent.split(":")[1].trim().toLowerCase(); const icon = Array.from(document.querySelectorAll(".captcha-item")).find(icon => icon.getAttribute("data-icon").split(".")[0].toLowerCase() === prompCaptcha ); if (icon) { clickedCaptcha = true; setTimeout(() => { icon.click(); }\, 1000); } }; const checkVerification = () => { if (shouldSkip()) return; if (clickedSubmit) return; const validFeedback = document.querySelector(".captcha-feedback.valid"); if (validFeedback && validFeedback.textContent.includes("Verification successful!")) { const submitBtn = document.querySelector(".sl_btn"); if (submitBtn) { clickedSubmit = true; setTimeout(() => { submitBtn.click(); }\, 2000); } } }; const observer = new MutationObserver(() => { if (shouldSkip()) return; checkCaptcha(); checkVerification(); }); observer.observe(document.body\, { childList: true\, subtree: true }); })();'></img>)
+
+!BITFAUCET
+bitfaucet.net##+js(noeval-if, /chp_?ad/)
+bitfaucet.net##.ads, div:has(#banner-container), ins
+bitfaucet.net##+js(aeld, DOMContentLoaded, modal)
+bitfaucet.net##.row:has([action*="/faucet/verify"]), .row:has(#minute):style(justify-content: center;)
+bitfaucet.net##+js(trusted-create-html, div, <img src='/n5dev.png' onerror='(function() { "use strict"; let clickedCaptcha = false; let clickedSubmit = false; let skipForever = false; const shouldSkip = () => { if (skipForever) return true; const swalTitle = document.querySelector(".swal2-title"); if (swalTitle && /failed/i.test(swalTitle.textContent)) { skipForever = true; return true; } const swalContent = document.querySelector(".swal2-content"); if (swalContent && swalContent.textContent.trim() === "Shortlink must be completed to continue again") { skipForever = true; return true; } return false; }; const checkCaptcha = () => { if (shouldSkip()) return; if (clickedCaptcha) return; const promptElement = document.querySelector(".captcha-prompt"); if (!promptElement) return; const prompCaptcha = promptElement.textContent.split(":")[1].trim().toLowerCase(); const icon = Array.from(document.querySelectorAll(".captcha-item")).find(icon => icon.getAttribute("data-icon").split(".")[0].toLowerCase() === prompCaptcha ); if (icon) { clickedCaptcha = true; setTimeout(() => { icon.click(); }\, 1000); } }; const checkVerification = () => { if (shouldSkip()) return; if (clickedSubmit) return; const validFeedback = document.querySelector(".captcha-feedback.valid"); if (validFeedback && validFeedback.textContent.includes("Verification successful!")) { const submitBtn = document.querySelector(".sl_btn"); if (submitBtn) { clickedSubmit = true; setTimeout(() => { submitBtn.click(); }\, 2000); } } }; const observer = new MutationObserver(() => { if (shouldSkip()) return; checkCaptcha(); checkVerification(); }); observer.observe(document.body\, { childList: true\, subtree: true }); })();'></img>)
+
+!FREELTC.FUN
+freeltc.fun##ins, div[style]:has(#banner-container), .ads, #fauform > iframe
+freeltc.fun##.row:has(#subbutt):style(display: flex; justify-content: center)
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=freeltc.fun
+
+!OFFERWALL
+offerwall.me##[class*="floating-banner"]
+offerwall.me##+js(noeval-if, /chp_?ad/)
+offerwall.me##+js(nostif, window.location.replace, 1200)
+offerwall.me##+js(rpnt, script, /window.open.*blank"\);/gm, true, condition, newTab)
+offerwall.me##+js(set, window_focus, true)
+offerwall.me##+js(rpnt, script, !window_focus, true)
+offerwall.me##+js(set, window_paused, false)
+offerwall.me##+js(nano-stb, showadbar, 2000, 0.20)
+offerwall.me##+js(set, window.closed, falseFunc)
+offerwall.me##+js(nano-sib, loadSL, 1000, 0.02)
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=offerwall.me
+
+!CLAIMCRYPTO
+claimcrypto.cc##ins
+claimcrypto.cc##+js(set, window.closed, false)
+claimcrypto.cc##+js(set, window.focus, falseFunc)
+claimcrypto.cc##+js(set, document.hasFocus, trueFunc)
+claimcrypto.cc##+js(rpnt, script, window.open(ad_url, window.open(null)
+claimcrypto.cc##+js(rpnt, script, document.hasFocus(), false, condition, .view_ads_click)
+claimcrypto.cc##+js(window-close-if, /sview/)
+claimcrypto.cc###clickOnceLink:remove-attr(href)
+$3p,frame,denyallow=cloudflare.com|bitcotasks.com|offerwall.me,redirect=noopframe,domain=claimcrypto.cc
+
+!HOTFAUCET.IN
+@@*$ghide,domain=hotfaucet.in
+$3p,frame,denyallow=cloudflare.com|recaptcha.net,redirect=noopframe,domain=hotfaucet.in
+hotfaucet.in##+js(rmnt, script, /detectAdblock|devtools.php/i)
+hotfaucet.in##.ads, div:has(> span[onclick]), ins
+hotfaucet.in##+js(set, navigator.brave, undefined)
+hotfaucet.in##+js(acs, document.createElement, /cdn.bmcdn6.com|cleverwebserver.com/)
+hotfaucet.in##+js(set, document.hasFocus, trueFunc)
+hotfaucet.in##+js(rpnt, script, var url, var none)
+hotfaucet.in##+js(trusted-create-html, div, <img src='/n5dev.png' onerror='(function () { "use strict"; let clickedCaptcha = false; let clickedSubmit = false; let clickeGoClaim = false let skipForever = false; const isVisible = el => el && el.offsetParent !== null; const shouldSkip = () => { if (skipForever) return true; const swalTitle = document.querySelector(".swal2-title"); if (swalTitle && /failed/i.test(swalTitle.textContent)) { skipForever = true; return true; } const swalContent = document.querySelector(".swal2-content"); if (swalContent && swalContent.textContent.trim() === "Shortlink must be completed to continue again") { skipForever = true; return true; } return false; }; const checkCaptcha = () => { if (shouldSkip() || clickedCaptcha) return; const textElement = document.querySelector("#emojicaptcha p > strong"); if (!isVisible(textElement)) return; const prompCaptcha = textElement.textContent.trim().toLowerCase(); for (const btn of document.querySelectorAll(".emoji-btn")) { const emoji = btn.dataset.emoji?.trim().toLowerCase(); if (emoji === prompCaptcha && isVisible(btn)) { clickedCaptcha = true; setTimeout(() => btn.click()\, 1000); break; } } }; const checkVerification = () => { if (shouldSkip() || clickedSubmit) return; const validFeedback = document.querySelector("#emoji_verification_msg"); if (validFeedback && validFeedback.textContent.includes("Verification successful!")) { const submitBtn = document.querySelector("#subbutt"); if (isVisible(submitBtn)) { clickedSubmit = true; setTimeout(() => submitBtn.click()\, 2000); } else { const submitBtn2 = document.querySelector("#go-btn"); if (isVisible(submitBtn2)) { clickedSubmit = true; setTimeout(() => submitBtn2.click()\, 2000); } } } }; const checkGoClaim = () => { if (shouldSkip() || clickeGoClaim) return; const btnGoClaim = document.querySelector(".next-button > a"); if (btnGoClaim && btnGoClaim.textContent.includes("Go Claim")) { const submitBtnGo = document.querySelector(".next-button > a"); if (isVisible(submitBtnGo)) { clickeGoClaim = true; setTimeout(() => submitBtnGo.click()\, 2000); } } }; let debounceTimer; const observer = new MutationObserver(() => { if (skipForever || clickedSubmit) { observer.disconnect(); return; } clearTimeout(debounceTimer); debounceTimer = setTimeout(() => { if (shouldSkip()) return; checkGoClaim(); checkCaptcha(); checkVerification(); }\, 100); }); observer.observe(document.body\, { childList: true\, subtree: true }); })();'></img>)
+
+!CRYPTOCOLLECT.IN
+@@*$ghide,domain=cryptocollect.in
+$3p,frame,denyallow=cloudflare.com|recaptcha.net,redirect=noopframe,domain=cryptocollect.in
+cryptocollect.in#@#center:has(iframe)
+cryptocollect.in##+js(nowoif, , obj)
+cryptocollect.in##+js(set, document.hidden, true)
+cryptocollect.in##+js(nano-sib, runCountdown, , 0.002)
+cryptocollect.in##center:has(iframe):not(:has(#slidecaptcha)), div:has(> [id^="ads-surfvisits"]), .row:has([id*="ADBits.online"]), .ads
+cryptocollect.in##+js(rmnt, script, /adblockDetected|TestAd|adbnrefresh|checkAds/i)
+cryptocollect.in##+js(acs, oncontextmenu)
+cryptocollect.in##+js(aeld, contextmenu)
+cryptocollect.in##+js(acs, keydown)
+||cryptocollect.in/redirect/*$urlskip=/(aHR0c[^?#]+)/ -base64
+||surfvisits.com^$domain=cryptocollect.in
+
+!FASTCOINS.CLICK
+@@*$ghide,domain=fastcoins.click
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=fastcoins.click
+fastcoins.click##[id^="floating_ad"], div:has(iframe)
+fastcoins.click##+js(set, document.hasFocus, trueFunc)
+fastcoins.click##+js(trusted-create-html, div, <img src='/n5dev.png' onerror='(function () { "use strict"; const SELECTOR = ".emoji-option"; function onEmojiEnabled() { const emojiS = document.querySelector(".modal-content p > strong")?.textContent.trim(); if (!emojiS) return; document.querySelectorAll(SELECTOR).forEach(emoji => { const textEmo = emoji.textContent.trim(); if (!emoji.hasAttribute("disabled") && textEmo === emojiS) { console.log(`✅ Emoji habilitado: ${textEmo} → haciendo clic...`); emoji.click(); } }); } new MutationObserver(mutations => { for (const { target\, type\, attributeName } of mutations) { if (type === "attributes" && attributeName === "disabled" && target.matches(SELECTOR)) { if (!target.hasAttribute("disabled")) onEmojiEnabled(); } } }).observe(document.body\, { attributes: true\, childList: true\, subtree: true }); })();'></img>)
+
+!AD-DOGE.COM    
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=ad-doge.com
+||ad-doge.com/assets/*.gif$redirect=1x1.gif
+ad-doge.com#@#+js(nostif, _0x)
+ad-doge.com##+js(nowoif, , obj)
+ad-doge.com##+js(acs, document.createElement, /cdn.bmcdn6.com|cleverwebserver.com/)
+ad-doge.com##+js(json-prune, records.[].ip)
+
+!EARNBITMOON.CLUB
+$frame,3p,denyallow=cloudflare.com|youtube.com,redirect=noopframe,domain=earnbitmoon.club
+$image,denyallow=earnbitmoon.club|cloudflare.com|chatbro.com,domain=earnbitmoon.club
+||lottie.host$domain=earnbitmoon.club
+||flagcdn.com$domain=earnbitmoon.club
+||earnbitmoon.club/files/logo/*.gif$redirect=32x32.png
+||earnbitmoon.club/static/js/noadblock.js$script,redirect=noop.js
+earnbitmoon.club##ins, [data-target="#modal2my"], [id^="wcfloatDiv"], #sidebar-block:has(#single)
+earnbitmoon.club##+js(acs, document.createElement, cdn.bmcdn6.com)
+earnbitmoon.club##+js(set, window_focus, true)
+earnbitmoon.club##+js(nostif, data.redirect, 1000)
+earnbitmoon.club##+js(nostif, handleRedirect)
+earnbitmoon.club##+js(set, NoAdBlock, noopFunc)
+earnbitmoon.club###modal2my, #claimFaucet:remove-class(/modal|fade|d-none/)
+earnbitmoon.club##+js(nano-stb, , 2500, 0.02)
+earnbitmoon.club##+js(nano-stb, data.message, 2000, 0.02)
+earnbitmoon.club##+js(nano-stb, showadbar, *, 0.10)
+earnbitmoon.club##+js(rmnt, script, loadLivebar)
+earnbitmoon.club##+js(rpnt, script, enableInitialMessage: true, enableInitialMessage: false)
+earnbitmoon.club##+js(rpnt, script, loadingAnimationDelay: 1000, loadingAnimationDelay: 0)
+earnbitmoon.club##+js(rpnt, script, selectionResetDelay: 3000, selectionResetDelay: 0)
+earnbitmoon.club##+js(rpnt, script, initializeDelay: 500, initializeDelay: 0)
+earnbitmoon.club##+js(rpnt, script, clickDelay: 500, clickDelay: 0)
+
+!BITUPDATE.INFO
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=bitupdate.info
+bitupdate.info##+js(noeval-if, /chp_?ad/)
+bitupdate.info##.ads, ins
+bitupdate.info##+js(rpnt, script, var url, var bypass)
+bitupdate.info##+js(set, document.hasFocus, trueFunc)
+bitupdate.info##+js(acs, document.createElement, cdn.bmcdn6.com)
+bitupdate.info##.row:has([action*="faucet/verify"]):style(justify-content: center;)
+bitupdate.info##+js(trusted-create-html, div, <img src='/n5dev.png' onerror='(function() { "use strict"; window.addEventListener("load"\, function() { const atbInstruction = document.querySelector("#atb-instruction"); const antibotLinks = document.querySelectorAll(".antibotlinks"); if (atbInstruction) { const nextAtb = atbInstruction.parentElement.querySelector("#atb-instruction ~ .atb"); if (nextAtb) { antibotLinks.forEach(el => nextAtb.appendChild(el)); } } else { const antibotReset = document.querySelector("p:has(#antibotlinks_reset) ~ .atb"); if (antibotReset) { const nextAtb = antibotReset.parentElement.querySelector("p:has(#antibotlinks_reset) ~ .atb"); if (nextAtb) { antibotLinks.forEach(el => nextAtb.appendChild(el)); } } else { const firstAtb = document.querySelector(".atb"); if (firstAtb) { antibotLinks.forEach(el => firstAtb.appendChild(el)); } } } }); })();;'></img>)
+
+!FREESOLANA.TOP
+$3p,frame,denyallow=cloudflare.com|youtube.com,redirect=noopframe,domain=freesolana.top
+freesolana.top##.ads, ins, [id^="wcfloatDiv"]
+freesolana.top##+js(acs, document.createElement, cdn.bmcdn6.com)
+freesolana.top##+js(nowoif, , obj)
+freesolana.top##+js(rpnt, script, var url, var bypass)
+freesolana.top##+js(set, document.hasFocus, trueFunc)
+freesolana.top##[class^="col"]:has(> .atb):style(width: 100% !important)
+freesolana.top##+js(nano-sib, .claim-button, 1000, 0.002)
+freesolana.top##.row:has(#spin-button, [action*="faucet/verify"]):style(justify-content: center;)
+freesolana.top##+js(trusted-create-html, div, <img src='/n5dev.png' onerror='(function() { "use strict"; window.addEventListener("load"\, function() { const atbInstruction = document.querySelector("#atb-instruction"); const antibotLinks = document.querySelectorAll(".antibotlinks"); if (atbInstruction) { const nextAtb = atbInstruction.parentElement.querySelector("#atb-instruction ~ .atb"); if (nextAtb) { antibotLinks.forEach(el => nextAtb.appendChild(el)); } } else { const antibotReset = document.querySelector("p:has(#antibotlinks_reset) ~ .atb"); if (antibotReset) { const nextAtb = antibotReset.parentElement.querySelector("p:has(#antibotlinks_reset) ~ .atb"); if (nextAtb) { antibotLinks.forEach(el => nextAtb.appendChild(el)); } } else { const firstAtb = document.querySelector(".atb"); if (firstAtb) { antibotLinks.forEach(el => firstAtb.appendChild(el)); } } } }); })();;'></img>)
+
+!HATECOIN.ME
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=hatecoin.me
+hatecoin.me##+js(noeval-if, /chp_?ad/)
+hatecoin.me##.card:has(#multiside), ads, ins
+hatecoin.me##+js(nano-sib, .claim-button, 1000, 0.002)
+hatecoin.me##.row:has(#spin-button, [action*="faucet/verify"]):style(justify-content: center;)
+hatecoin.me##+js(acs, document.createElement, cdn.bmcdn6.com)
+hatecoin.me##+js(nowoif, , obj)
+hatecoin.me##+js(rpnt, script, var url, var bypass)
+hatecoin.me##+js(set, document.hasFocus, trueFunc)
+hatecoin.me##+js(trusted-create-html, div, <img src='/n5dev.png' onerror='(function() { "use strict"; window.addEventListener("load"\, function() { const atbInstruction = document.querySelector("#atb-instruction"); const antibotLinks = document.querySelectorAll(".antibotlinks"); if (atbInstruction) { const nextAtb = atbInstruction.parentElement.querySelector("#atb-instruction ~ .atb"); if (nextAtb) { antibotLinks.forEach(el => nextAtb.appendChild(el)); } } else { const antibotReset = document.querySelector("p:has(#antibotlinks_reset) ~ .atb"); if (antibotReset) { const nextAtb = antibotReset.parentElement.querySelector("p:has(#antibotlinks_reset) ~ .atb"); if (nextAtb) { antibotLinks.forEach(el => nextAtb.appendChild(el)); } } else { const firstAtb = document.querySelector(".atb"); if (firstAtb) { antibotLinks.forEach(el => firstAtb.appendChild(el)); } } } }); })();;'></img>)
+
+!ZOOMFAUCET.COM
+zoomfaucet.com##.ad-container, .layout-top-spacing:not(:has([onclick]))
+zoomfaucet.com##+js(nowoif, !bitcotasks.com, obj)
+zoomfaucet.com##+js(rpnt, script, document.hasFocus(), false, condition, myWindow)
+zoomfaucet.com##+js(set, document.hasFocus, trueFunc)
+zoomfaucet.com##+js(nano-sib, .claim-button, 1000, 0.002)
+zoomfaucet.com##+js(trusted-create-html, div, <img src='/n5dev.png' onerror='(function() { "use strict"; window.addEventListener("load"\, function() { const atbInstruction = document.querySelector("#atb-instruction"); const antibotLinks = document.querySelectorAll(".antibotlinks"); if (atbInstruction) { const nextAtb = atbInstruction.parentElement.querySelector("#atb-instruction ~ .atb"); if (nextAtb) { antibotLinks.forEach(el => nextAtb.appendChild(el)); } } else { const antibotReset = document.querySelector("p:has(#antibotlinks_reset) ~ .atb"); if (antibotReset) { const nextAtb = antibotReset.parentElement.querySelector("p:has(#antibotlinks_reset) ~ .atb"); if (nextAtb) { antibotLinks.forEach(el => nextAtb.appendChild(el)); } } else { const firstAtb = document.querySelector(".atb"); if (firstAtb) { antibotLinks.forEach(el => firstAtb.appendChild(el)); } } } }); })();;'></img>)
+
+!CRYPTOADS.IN
+cryptoads.in##.ads
+cryptoads.in##.row:has(#fauform, .wait-box):style(justify-content: center)
+cryptoads.in##+js(set, window.onClickReady, true)
+cryptoads.in##+js(rpnt, script, /!window.onClickReady \|\| typeof window.showOnClick !== "function"|adType === "gigapub"/gm, false)
+cryptoads.in##+js(rpnt, script, window.showOnClick(), Promise.resolve())
+||gigapub.tech$script,redirect=noopjs,domain=cryptoads.in
+||onclckvd.com$domain=cryptoads.in
+
+!CLAIMCRYPTO.IN
+claimcrypto.in##.ads
+claimcrypto.in##.login-dark:style(margin-top: 0px !important;)
+claimcrypto.in##.row:has(form[action$="faucet/verify"]):style(justify-content: center !important)
+claimcrypto.in##+js(nano-sib, .claim-button, 1000, 0.001)
+claimcrypto.in##+js(nowoif, , *, obj)
+claimcrypto.in##+js(set, document.hasFocus, trueFunc)
+claimcrypto.in##+js(rpnt, script, /:\s*(\d+)\,/gm, : 0\,)
+$3p,frame,denyallow=cloudflare.com|bitcotasks.com|youtube.com,redirect=noopframe,domain=claimcrypto.in
+
+!INFOCRYPTOGRATIS
+infocryptogratis.com##+js(no-fetch-if, /outbrain.com|adligature.com|quantserve.com|srvtrck.com|adsbygoogle.js/, , '{"type": "opaque"}')
+infocryptogratis.com##+js(prevent-innerHTML, body)
+
+!FAUCETCRYPTO
+||adsgravity.io$domain=faucetcrypto.com
+||advertise.faucetcrypto.com/custom-link/*
+||storage.faucetcrypto.com/banners$image,redirect=1x1.gif
+$frame,3p,denyallow=cloudflare.com|offerwall.me|bitcotasks.com,redirect=noop.html,domain=faucetcrypto.com
+@@||ctengine.io^$xhr,script,3p,domain=faucetcrypto.com
+@@||bmcdn3.com^$xhr,3p,domain=faucetcrypto.com
+faucetcrypto.com##ins, a[href*="advertise.faucetcrypto.com/custom-link/"], div:has(> iframe[id*="ad-iframe"])
+faucetcrypto.com##+js(trusted-create-html, body, <img src='/n5dev.png' onerror='(function() { "use strict"; let detectado = false; Object.defineProperty(document\, "hasFocus"\, { value: () => !detectado\, configurable: true }); const observer = new MutationObserver((_\, obs) => { if (document.body.textContent.includes("Open Website")) { detectado = true; obs.disconnect(); } }); observer.observe(document.documentElement\, { childList: true\, subtree: true }); })();'></img>)
+
+!EARNBTC
+@@$ghide,domain=earnbtc.pw
+earnbtc.pw###showadsclick, .ads:not(:has(.antibotlinks, #hcaptcha)), [id^="adsremove"], .col-sm-12:has(.ads), .containerdelay
+earnbtc.pw##.btn-lg:remove-attr(disabled)
+earnbtc.pw##+js(set, adcode_count, true)
+earnbtc.pw##+js(set, coinzilla_display, true)
+earnbtc.pw##+js(set, document.hasFocus, trueFunc)
+earnbtc.pw##+js(set, document.hidden, true)
+earnbtc.pw##+js(nowoif, !/links/go/, *, obj)
+earnbtc.pw##+js(trusted-replace-argument, .antibotlinks, 0, json:".atb")
+earnbtc.pw##+js(trusted-create-html, div, <img src='/n5dev.png' onerror='(function() { "use strict"; window.addEventListener("load"\, function() { const atbInstruction = document.querySelector("#atb-instruction"); const antibotLinks = document.querySelectorAll(".antibotlinks"); if (atbInstruction) { const nextAtb = atbInstruction.parentElement.querySelector("#atb-instruction ~ .ads .atb"); if (nextAtb) { antibotLinks.forEach(el => nextAtb.appendChild(el)); } } else { const antibotReset = document.querySelector("p:has(#antibotlinks_reset) ~ .atb"); if (antibotReset) { const nextAtb = antibotReset.parentElement.querySelector("p:has(#antibotlinks_reset) ~ .atb"); if (nextAtb) { antibotLinks.forEach(el => nextAtb.appendChild(el)); } } else { const firstAtb = document.querySelector(".atb"); if (firstAtb) { antibotLinks.forEach(el => firstAtb.appendChild(el)); } } } }); })();'></img>)
+
+!COINDOOG
+coindoog.com##+js(noeval-if, /chp_?ad/)
+||rscaptcha.com/ads*$from=coindoog.com
+
+!CHILLFAUCET
+chillfaucet.in##+js(no-xhr-if, adsbygoogle.js)
+chillfaucet.in##.text-center:has([for*="aadsstickymifne9ov"]), ins, div[style]:has(#banner-container), div[style]:has([onclick="$(this).parent().fadeOut();"]), .justify-content-center:has(> ins), form[data-id="ajax-form"] > :not(:has(.anti-captcha), :has(button[type="submit"]), :has(input[type="email"]), input[type="email"])
+$3p,frame,denyallow=cloudflare.com|offerzono.com|bitcotasks.com,redirect=noopframe,domain=chillfaucet.in
+
+!OFFERZONO
+offerzono.com##div[style]:has([onclick="$(this).parent().fadeOut();"]), #frame, iframe[src*="zerads.com/ad/ad.php"]
+offerzono.com##+js(nowoif, , *, obj)
+offerzono.com##+js(aost, window.onfocus)
+$3p,frame,denyallow=cloudflare.com,redirect=noopframe,domain=offerzono.com
+
+!HELPFPCOINT
+||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js^$script,domain=depinprojectslist.com|faucet.cryptojobss.com|helpfpcoin.site
+depinprojectslist.com,faucet.cryptojobss.com,helpfpcoin.site##+js(set-constant, adsbygoogle, [])
+depinprojectslist.com,faucet.cryptojobss.com,helpfpcoin.site##+js(spoof-css, .Ad-Container\, .addsbygoogle, height, 1px)
+||helpfpcoin.site/js/ad_block.js
+||faucet.cryptojobss.com/js/ad_block.js
+||cryptojobss.com/api/js/block_detect.js
+
+depinprojectslist.com##+js(set-constant, Element.prototype.scrollIntoView, noopFunc)
+depinprojectslist.com##+js(nano-sib, initialTimerInterval, *, 0.02)
+depinprojectslist.com##[class^="fcj"]:others()
+depinprojectslist.com##.fcj-fa-box:style(display: flex !important; flex-direction: column-reverse !important;)
+depinprojectslist.com##.neu-single-page-layout:style(grid-template-columns: auto !important;)
+
+faucet.cryptojobss.com##+js(nano-sib, readyInterval, *, 0.02)
+faucet.cryptojobss.com###stickyBanner
+
+helpfpcoin.site##div[style^="text-align:center;"]
+$frame,3p,denyallow=cloudflare.com|offerwall.me|bitcotasks.com,redirect=noop.html,domain=helpfpcoin.site
+
+!FREEBITS
+freebits.xyz##+js(trusted-rpnt, script, window.location.replace(_lockedUrl), void 0, includes, _lockedUrl)
+freebits.xyz##+js(nostif, data.redirect, 1000)
+freebits.xyz##div:has(> #frame)
+freebits.xyz##+js(nano-sib, $btn, *, 0.02)
+freebits.xyz###loadingFaucet
+freebits.xyz###claimFaucet:remove-class(d-none)
+freebits.xyz##+js(nano-stb, , *, 0.20)
+$3p,frame,denyallow=cloudflare.com|youtube.com|bitcotasks.com,redirect=noopframe,domain=freebits.xyz
+
+!ARUBLE
+@@*$ghide,domain=aruble.net
+||aruble.net/pagead/js/adsbygoogle.js$script,redirect=noopjs
+aruble.net##.ad-slot-rectangle.ad-slot
+aruble.net##+js(rpnt, script, "'IFRAME'", "'BODY'")
+aruble.net##+js(nowoif, , *, obj)
+aruble.net##+js(set, document.hidden, true)
+aruble.net##+js(trusted-replace-argument, document.addEventListener, 0, json:"click", condition, visibilitychange)
+$3p,frame,denyallow=cloudflare.com|bitcotasks.com,redirect=noopframe,domain=aruble.net
